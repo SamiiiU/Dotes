@@ -1,19 +1,27 @@
 import React from 'react';
 import './App.css';
-import Card from './Components/Card.jsx'
 import Bg from './Components/Bg.jsx'
 import Fg from './Components/Fg.jsx';
+import Add from './Components/Add.jsx';
+import AppProvider from './GlobalState/GlobalAdd.jsx';
+
 
 function App() {
   return (
+      
+      <AppProvider>
       <div className="relative w-full h-screen bg-zinc-800">
-        {/* Background */}
+        
         <Bg />
-        {/* ForeGround */}
+        
 
         <Fg />
+
+        <Add />
           
       </div>
+      </AppProvider>
+      
   );
 }
 

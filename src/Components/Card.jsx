@@ -1,34 +1,61 @@
-import React from 'react'
+import React , {useContext } from 'react'
 import { FaRegFile } from "react-icons/fa";
 import { MdFileDownload } from "react-icons/md";
 import { IoCloseSharp } from "react-icons/io5";
+import { FaRegNoteSticky } from "react-icons/fa6";
 import { motion } from "framer-motion"
+import { DataContext } from '../GlobalState/GlobalData';
+import { AppContext } from '../GlobalState/GlobalAdd';
 
-const Card = ({data , frame}) => {
+
+const Card = ({frame}) => {
+
+  const {data} = useContext(DataContext);
+  const {Close , setIsOpen ,setTitle , title ,setDescription ,description, editID , setId} = useContext(AppContext)
+
+  const editor = (item) =>{
+    setIsOpen(true)
+    setTitle(item.title)
+    setDescription(item.description)
+    setId(item.id)
+    
+    console.log(item.id , editID )
+
+  } 
+  
   return (
-    
-      <motion.div drag dragConstraints={frame} whileDrag={{scale: 1.2}} dragTransition={{ bounceStiffness: 200, bounceDamping: 10}} className='relative overflow-hidden p-5 h-60 rounded-[30px] text-teal-50 bg-zinc-900/90 w-48'>
-        <FaRegFile />
-        <p className='mt-4 text-sm leading-tight'>{data.description}</p>
-
-        <div className='absolute bottom-0 left-0 w-full '>
-          <div className='flex items-center justify-between px-5 py-4 '>
-            <h2 className='text-sm'>{data.fileSize}</h2>
-            <span className='rounded-full bg-zinc-600 p-[.2rem]'>
-              {data.close ? <IoCloseSharp  size=".8em"/> : <MdFileDownload  size=".8em"/>}
-              </span>
-          </div>
-          {data.tags.isOpen && (
-            <div className= {`flex items-center justify-center w-full py-2 font-semibold bg-${data.tags.tagColor}-400 tag `}>
-            <h3 className='text-sm'>{data.tags.tagTitle}</h3>
-            </div>
-          ) }
+    <>
+    {data.map((item,index ) => (
+      <motion.div onClick={() => editor(item)} key={index} drag dragConstraints={frame} whileDrag={{scale: 1.2}} dragTransition={{ bounceStiffness: 200, bounceDamping: 10}} className='relative overflow-hidden p-5 h-60 rounded-[30px] text-teal-50 bg-zinc-900/90 desktop:w-[15vw] w-[250px]'>
+        
           
-
-        </div>
-        </motion.div>
+      <div  className='flex items-center gap-4'>
+      <FaRegNoteSticky />
+      <h1 className='font-semibold'>{item.title}</h1>
+      </div>
+      <div className='w-full h-[80%] overflow-hidden'>
+        <p className='mt-4 text-sm leading-tight'>{item.description}</p>
+      </div>
+      
+  
+      </motion.div>
+    ))}
+    </>
+      
     
-  )
+   )
 }
 
 export default Card
+
+// <motion.div drag dragConstraints={frame} whileDrag={{scale: 1.2}} dragTransition={{ bounceStiffness: 200, bounceDamping: 10}} className='relative overflow-hidden p-5 h-60 rounded-[30px] text-teal-50 bg-zinc-900/90 desktop:w-[15vw] w-[250px]'>
+        
+          
+//         <div  className='flex items-center gap-4'>
+//         <FaRegNoteSticky />
+//         <h1 className='font-semibold'>{item.title}</h1>
+//         </div>
+//         <p className='mt-4 text-sm leading-tight'>{item.description}</p>
+        
+    
+//       </motion.div>
