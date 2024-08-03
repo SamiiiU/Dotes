@@ -14,7 +14,7 @@ const Bg = () => {
   return (
     <div>
     <div className=' fixed z-[1] w-full h-screen '>
-          <div className='flex justify-between items-center w-full h-[10vh]  p-4 text-zinc-600 '>
+          <div className='flex justify-between items-center w-full h-[50px]  p-4 text-zinc-600 '>
             <h1 className='text-xl font-bold text-teal-50'>Dotes Manageger</h1>
             <div className='cursor-pointer' onClick={newHandle}><MdAddCircle size="2.5em" color='ff3c38'/></div>
           </div>

@@ -1,12 +1,10 @@
 import React, {  useRef } from 'react'
 import Card from './Card'
 
-
 const Fg = () => {
 
   const fgFrame = useRef(null);
 
-  
 
   return (
     <div>
