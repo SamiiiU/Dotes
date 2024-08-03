@@ -14,12 +14,13 @@ const AppProvider = ({ children }) => {
     const [description , setDescription] = useState("");
     const [isNew , setIsNew] = useState(false);
     const [editID , setId] = useState(1);
+    const [password , setPassword] = useState("");
 
     
 
 
   return (
-    <AppContext.Provider value={{ editID , setId, isOpen , setIsOpen, isNew , setIsNew , Close , title , setTitle , description , setDescription }}>
+    <AppContext.Provider value={{password , setPassword, editID , setId, isOpen , setIsOpen, isNew , setIsNew , Close , title , setTitle , description , setDescription }}>
       {children}
     </AppContext.Provider>
   );

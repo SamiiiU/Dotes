@@ -1,7 +1,4 @@
 import React , {useContext } from 'react'
-import { FaRegFile } from "react-icons/fa";
-import { MdFileDownload } from "react-icons/md";
-import { IoCloseSharp } from "react-icons/io5";
 import { FaRegNoteSticky } from "react-icons/fa6";
 import { motion } from "framer-motion"
 import { DataContext } from '../GlobalState/GlobalData';
@@ -11,31 +8,44 @@ import { AppContext } from '../GlobalState/GlobalAdd';
 const Card = ({frame}) => {
 
   const {data} = useContext(DataContext);
-  const {Close , setIsOpen ,setTitle , title ,setDescription ,description, editID , setId} = useContext(AppContext)
+  const {Close , setIsOpen ,setTitle , setPassword, setDescription , editID , setId} = useContext(AppContext)
 
   const editor = (item) =>{
     setIsOpen(true)
     setTitle(item.title)
     setDescription(item.description)
+    setPassword(item.password)
     setId(item.id)
     
-    console.log(item.id , editID )
+    console.log(item.id , editID , item.password )
 
   } 
   
   return (
     <>
     {data.map((item,index ) => (
-      <motion.div onClick={() => editor(item)} key={index} drag dragConstraints={frame} whileDrag={{scale: 1.2}} dragTransition={{ bounceStiffness: 200, bounceDamping: 10}} className='relative overflow-hidden p-5 h-60 rounded-[30px] text-teal-50 bg-zinc-900/90 desktop:w-[15vw] w-[250px]'>
+      <motion.div
+
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20, duration: 0.3 }}
+      onClick={() => editor(item)} 
+      
+      key={index} 
+      
+      drag dragConstraints={frame} whileDrag={{scale: 1.2}} dragTransition={{ bounceStiffness: 200, bounceDamping: 10}} 
+      
+      className='relative overflow-hidden p-5 rounded-[30px] text-teal-50 bg-zinc-900/90 h-[160px] w-[160px] sm:h-[280px] sm:w-[250px] '>
         
           
       <div  className='flex items-center gap-4'>
       <FaRegNoteSticky />
-      <h1 className='font-semibold'>{item.title}</h1>
+      <div className='w-full font-semibold '>{item.title}</div>
       </div>
-      <div className='w-full h-[80%] overflow-hidden'>
+      <div className='w-full h-[80%] overflow-hidden pb-1'>
         <p className='mt-4 text-sm leading-tight'>{item.description}</p>
       </div>
+      <p>****************</p>
       
   
       </motion.div>
@@ -47,15 +57,3 @@ const Card = ({frame}) => {
 }
 
 export default Card
-
-// <motion.div drag dragConstraints={frame} whileDrag={{scale: 1.2}} dragTransition={{ bounceStiffness: 200, bounceDamping: 10}} className='relative overflow-hidden p-5 h-60 rounded-[30px] text-teal-50 bg-zinc-900/90 desktop:w-[15vw] w-[250px]'>
-        
-          
-//         <div  className='flex items-center gap-4'>
-//         <FaRegNoteSticky />
-//         <h1 className='font-semibold'>{item.title}</h1>
-//         </div>
-//         <p className='mt-4 text-sm leading-tight'>{item.description}</p>
-        
-    
-//       </motion.div>

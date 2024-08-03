@@ -8,6 +8,7 @@ const initialstate = {
             id : 1,
             title: "Text",
             description: "Any text you want",
+            password : "234532",
         }
     ]
 }
@@ -40,8 +41,6 @@ const DataProvider = ({ children }) => {
         });
     }
     
-
-  
 
   
   return (
