@@ -44,6 +44,7 @@ const Add = () => {
 
         setTitle("New dote....")
         setDescription("");
+        setPassword("");
     }
 
     const handleSave = () => {
@@ -64,6 +65,7 @@ const Add = () => {
 
         setTitle("New dote....")
         setDescription("");
+        setPassword("")
 
     }
 
