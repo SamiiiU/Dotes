@@ -25,11 +25,9 @@ const Add = () => {
 
     const handlepassword = (e) => {
         setPassword(e.target.value)
-        console.log(password)
     }
 
     const handleAdd = () => {
-       
   
         const newData = {
           id : data.length + 1,
@@ -46,9 +44,6 @@ const Add = () => {
 
         setTitle("New dote....")
         setDescription("");
-
-        console.log( 'Total Data', data);
-        console.log('Added Data', newData);
     }
 
     const handleSave = () => {
@@ -70,7 +65,6 @@ const Add = () => {
         setTitle("New dote....")
         setDescription("");
 
-
     }
 
     const handleClose = () =>{
@@ -84,8 +78,6 @@ const Add = () => {
     }
 
     const handleDelete = () =>{
-
-        console.log(editID , isNew)
         Delete(editID);
 
         Close();
@@ -94,9 +86,7 @@ const Add = () => {
 
         setTitle("New dote....")
         setDescription("");
-
-
-        console.log(editID , isNew)
+        setPassword("")
     }
 
     const handlePass = () =>{
