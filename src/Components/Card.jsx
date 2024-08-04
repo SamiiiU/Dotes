@@ -9,7 +9,7 @@ import Security from './Security';
 const Card = ({frame}) => {
 
   const {data} = useContext(DataContext);
-  const { setIsOpen ,setTitle , setPassword, setDescription , editID , setId , security , setSecurity} = useContext(AppContext)
+  const {isUnlock , setIsOpen ,setTitle , setPassword, setDescription , editID , setId , security , setSecurity} = useContext(AppContext)
 
   const editor = (item) =>{
     setIsOpen(true)
@@ -21,10 +21,6 @@ const Card = ({frame}) => {
     console.log(item.id , editID , item.password )
 
   } 
-
-  
-
-  
 
   
   return (

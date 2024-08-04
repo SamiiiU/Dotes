@@ -47,7 +47,7 @@ const Security = () => {
   
           <div className='flex items-center justify-between mb-6 text-teal-50'>
               < FaRegNoteSticky/>
-              <p  className='font-bold text-center'>Enter the Key <span className='text-zinc-900'> "abc123" </span></p>
+              <p  className='font-bold text-center'>Enter the Key <span className='text-zinc-500'> "abc123" </span></p>
               <div ></div>
           </div>   
                       
