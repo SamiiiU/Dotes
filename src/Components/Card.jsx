@@ -3,12 +3,13 @@ import { FaRegNoteSticky } from "react-icons/fa6";
 import { motion } from "framer-motion"
 import { DataContext } from '../GlobalState/GlobalData';
 import { AppContext } from '../GlobalState/GlobalAdd';
+import Security from './Security';
 
 
 const Card = ({frame}) => {
 
   const {data} = useContext(DataContext);
-  const { setIsOpen ,setTitle , setPassword, setDescription , editID , setId} = useContext(AppContext)
+  const { setIsOpen ,setTitle , setPassword, setDescription , editID , setId , security , setSecurity} = useContext(AppContext)
 
   const editor = (item) =>{
     setIsOpen(true)
@@ -24,8 +25,15 @@ const Card = ({frame}) => {
   
 
   
+
+  
   return (
     <>
+
+    <div className='absolute left-0'>
+      <Security />
+    </div>
+
     {data.map((item,index ) => (
       <motion.div
 

@@ -15,12 +15,28 @@ const AppProvider = ({ children }) => {
     const [isNew , setIsNew] = useState(false);
     const [editID , setId] = useState(1);
     const [password , setPassword] = useState("");
+    const [security , setSecurity] = useState("");
+    const [isUnlock , setIsUnlock] = useState(false)
+    const [passMassage , setPassMassage] = useState(false)
 
+    
+    const handleSecurity = () => {
+      if (security === "abc123") {
+        setIsUnlock(true)
+          setPassMassage(false)
+      } 
+          
+      else{
+        setIsUnlock(false)
+        setPassMassage(true) 
+      }
+           
+  }
     
 
 
   return (
-    <AppContext.Provider value={{password , setPassword, editID , setId, isOpen , setIsOpen, isNew , setIsNew , Close , title , setTitle , description , setDescription }}>
+    <AppContext.Provider value={{passMassage , setPassMassage ,isUnlock, handleSecurity, password , setPassword, editID , setId, isOpen , setIsOpen, isNew , setIsNew , Close , title , setTitle , description , setDescription , security , setSecurity}}>
       {children}
     </AppContext.Provider>
   );
