@@ -1,34 +1,28 @@
-
-
-export  default (state , action) => {
-    switch(action.type){
+const Modifier = (state, action) => {
+    switch (action.type) {
         case 'DELETE':
-            const deleteData = state.data.filter(data=> data.id !== action.payload);
             return {
                 ...state,
-                data: deleteData
-        }
+                data: state.data.filter(item => item.id !== action.payload)
+            };
 
-        case 'ADD' :
-            
-            return{
+        case 'ADD':
+            return {
                 ...state,
-                data : [action.payload , ...state.data],
-            }
-        
-        case 'UPDATE' :
-            
-            return{
-                ...state,
-                data: state.data.map((item) =>
-                    item.id === action.payload.id ? action.payload : item,
-                    console.log(state)
-                ),
-                
-            }
-          
+                data: [action.payload, ...state.data]
+            };
 
-        default :
+        case 'UPDATE':
+            return {
+                ...state,
+                data: state.data.map(item => 
+                    item.id === action.payload.id ? { ...item, ...action.payload } : item
+                )
+            };
+
+        default:
             return state;
     }
-}
+};
+
+export default Modifier;

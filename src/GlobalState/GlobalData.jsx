@@ -1,8 +1,7 @@
-// DataContext.js
 import React, { createContext, useReducer, useEffect } from 'react';
 import Modifier from './Modifier';
 
-const initialstate = {
+const initialState = {
     data: JSON.parse(localStorage.getItem('data')) || [
         {
             id: 1,
@@ -14,18 +13,15 @@ const initialstate = {
 };
 
 // Create a context
-export const DataContext = createContext(initialstate);
+export const DataContext = createContext(initialState);
 
 const DataProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(Modifier, initialstate);
+    const [state, dispatch] = useReducer(Modifier, initialState);
 
     useEffect(() => {
-        // Load data from localStorage when the component mounts
-        const storedData = JSON.parse(localStorage.getItem('data'));
-        if (storedData) {
-            dispatch({ type: 'LOAD', payload: storedData });
-        }
-    }, []);
+        // Update local storage whenever state changes
+        localStorage.setItem('data', JSON.stringify(state.data));
+    }, [state.data]);
 
     const Delete = (id) => {
         dispatch({
@@ -34,10 +30,10 @@ const DataProvider = ({ children }) => {
         });
     };
 
-    const Add = (dota) => {
+    const Add = (data) => {
         dispatch({
             type: 'ADD',
-            payload: dota,
+            payload: data,
         });
     };
 
@@ -51,9 +47,9 @@ const DataProvider = ({ children }) => {
     return (
         <DataContext.Provider value={{ 
             data: state.data,
-            Delete,
             Add,
-            Update
+            Update,
+            Delete
         }}>
             {children}
         </DataContext.Provider>
